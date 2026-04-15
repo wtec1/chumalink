@@ -1,0 +1,69 @@
+
+
+require('dotenv').config();
+
+const express = require('express');
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+const API_KEY = process.env.CHUMAPAY_API_KEY;
+const BASE_URL = process.env.CHUMAPAY_BASE_URL || 'http://localhost:5000';
+
+// 🚀 PAYMENT ROUTE
+app.post('/pay', async (req, res) => {
+  try {
+    const { sender_id, amount, pin } = req.body;
+
+    // ✅ validation
+    if (!sender_id || !amount || !pin) {
+      return res.status(400).json({ error: 'Missing fields' });
+    }
+
+    const controller = new AbortController();
+    setTimeout(() => controller.abort(), 8000);
+
+    const response = await fetch(`${BASE_URL}/api/send`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${API_KEY}`
+      },
+      body: JSON.stringify({ sender_id, amount, pin }),
+      signal: controller.signal
+    });
+    
+
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      return res.json({ error: 'Invalid JSON response from API' });
+    }
+
+    // ✅ SUCCESS
+    if (response.ok && data.success) {
+      return res.redirect(
+        `/result.html?status=success&tx=${data.transaction_id || ''}`
+      );
+    }
+
+    // 🔴 DEBUG: show real API error
+    return res.status(response.status).json(data);
+
+  } catch (err) {
+    console.error('ERROR:', err.message);
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// 🟢 START SERVER
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`Client app running on http://localhost:${PORT}`);
+  console.log(`Using API: ${BASE_URL}`);
+});

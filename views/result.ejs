@@ -1,0 +1,67 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+  <div class="bg-white p-6 rounded-xl shadow text-center w-full max-w-md">
+
+    <!-- ICON -->
+    <div id="icon" class="text-5xl mb-4">⏳</div>
+
+    <!-- TITLE -->
+    <h2 id="title" class="text-xl font-bold mb-2">Processing...</h2>
+
+    <!-- MESSAGE -->
+    <p id="message" class="text-gray-500 text-sm mb-4">
+      Please wait...
+    </p>
+
+    <!-- ACTION -->
+    <a href="/"
+       class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+      Back to Home   
+    </a>
+<!-- //take client to particular route after pay -->
+  </div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+const status = params.get('status');
+const tx = params.get('tx');
+
+const icon = document.getElementById('icon');
+const title = document.getElementById('title');
+const message = document.getElementById('message');
+
+// ✅ SUCCESS
+if (status === 'success') {
+  icon.innerText = '✅';
+  title.innerText = 'Payment Successful';
+  message.innerText = tx
+    ? `Transaction ID: ${tx}`
+    : 'Payment completed successfully';
+}
+
+// ❌ FAILED
+else if (status === 'failed') {
+  icon.innerText = '❌';
+  title.innerText = 'Payment Failed';
+  message.innerText = 'Something went wrong. Try again.';
+}
+
+// ⏳ DEFAULT / UNKNOWN
+else {
+  icon.innerText = '⏳';
+  title.innerText = 'Pending';
+  message.innerText = 'Waiting for confirmation...';
+}
+</script>
+
+</body>
+</html>

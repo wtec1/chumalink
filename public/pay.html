@@ -1,0 +1,62 @@
+
+
+<!-- pay.html page to input amount. after then directed to checkout page just to enter user_code (sender). value will go into dev wallet by api key know dev -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ChumaPay · Pay</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Syne:wght@700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#eff6ff 0%,#f8fafc 60%,#f0fdf4 100%)}
+.card{background:#fff;border-radius:20px;padding:40px 36px;width:100%;max-width:400px;box-shadow:0 8px 40px rgba(37,99,235,0.10),0 1.5px 4px rgba(0,0,0,0.04)}
+.logo{font-family:'Syne',sans-serif;font-size:1.1rem;color:#2563eb;margin-bottom:32px;letter-spacing:-0.3px}
+.logo span{color:#0f172a}
+h2{font-family:'Syne',sans-serif;font-size:1.6rem;color:#0f172a;margin-bottom:6px}
+.sub{font-size:0.9rem;color:#94a3b8;margin-bottom:28px}
+.field{margin-bottom:20px}
+label{display:block;font-size:0.82rem;font-weight:500;color:#475569;margin-bottom:8px;letter-spacing:0.3px;text-transform:uppercase}
+.amount-wrap{position:relative}
+.currency{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:1.1rem;font-weight:500;color:#94a3b8}
+input[type=number]{width:100%;padding:16px 16px 16px 40px;border:1.5px solid #e2e8f0;border-radius:12px;font-size:1.25rem;font-family:'DM Sans',sans-serif;color:#0f172a;outline:none;transition:border-color 0.2s,box-shadow 0.2s;background:#f8fafc}
+input[type=number]:focus{border-color:#2563eb;box-shadow:0 0 0 4px rgba(37,99,235,0.08);background:#fff}
+input[type=number]::placeholder{color:#cbd5e1}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+.btn{width:100%;padding:16px;background:#2563eb;color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.2s;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,99,235,0.25)}
+.btn:active{transform:translateY(0)}
+.secure{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:20px;font-size:0.8rem;color:#94a3b8}
+.lock{font-size:0.75rem}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo">Chuma<span>Pay</span></div>
+  <h2>Make a payment</h2>
+  <p class="sub">Enter the amount you'd like to send</p>
+
+  <form action="/pay" method="POST">
+    <div class="field">
+      <label>Amount</label>
+      <div class="amount-wrap">
+        <span class="currency">K</span>
+        <input type="number" name="amount" placeholder="0.00" required/>
+      </div>
+    </div>
+    <button type="submit" class="btn">
+      Continue &rarr;
+    </button>
+  </form>
+
+  <div class="secure">
+    <span class="lock">🔒</span>
+    Secured with PIN & encryption
+  </div>
+</div>
+
+</body>
+</html>

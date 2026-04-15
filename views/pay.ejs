@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+  <form action="/pay" method="POST"
+        class="bg-white p-6 rounded-xl shadow w-full max-w-md space-y-3">
+
+    <h2 class="text-xl font-bold text-center">Pay Merchant</h2>
+
+    <input name="sender_id"
+      placeholder="Your User Code (e.g. WTC-123456)"
+      required
+      class="w-full border p-3 rounded" />
+
+    <p id="preview" class="text-sm text-gray-600 text-center"></p>
+
+    <input name="amount"
+      type="number"
+      min="1"
+      step="0.01"
+      placeholder="Amount (MWK)"
+      value="500" 
+      required
+      class="w-full border p-3 rounded" />
+
+    <input name="pin"
+      type="password"
+      maxlength="6"
+      placeholder="Enter PIN"
+      required
+      class="w-full border p-3 rounded" />
+
+    <p class="text-xs text-gray-500 text-center">
+      Secure payment powered by ChumaPay
+    </p>
+
+    <button
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded">
+      Pay Now
+    </button>
+
+  </form>
+
+<script>
+const amountInput = document.querySelector('input[name="amount"]');
+const senderInput = document.querySelector('input[name="sender_id"]');
+const preview = document.getElementById('preview');
+
+async function getPreview() {
+  const amount = amountInput.value;
+  const sender_id = senderInput.value;
+
+  if (!amount || !sender_id) {
+    preview.innerText = '';
+    return;
+  }
+
+  try {
+    const res = await fetch('/preview', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        sender_id,   // ✅ FIXED
+        amount
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+      preview.innerText = data.error;
+      return;
+    }
+
+    preview.innerText =
+      `Fee: MWK ${data.fee} | Total: MWK ${data.total}`;
+
+  } catch {
+    preview.innerText = '';
+  }
+}
+
+amountInput.addEventListener('input', getPreview);
+senderInput.addEventListener('input', getPreview);
+</script>
+
+</body>
+</html>

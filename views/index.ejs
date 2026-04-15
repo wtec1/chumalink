@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ChumaLink</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#f8f9fb;color:#1a1a2e;min-height:100vh}
+nav{background:#fff;border-bottom:1px solid #e8eaf0;padding:0 5%;display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-family:'Syne',sans-serif;font-size:1.4rem;color:#1a1a2e;letter-spacing:-0.5px}
+.logo span{color:#2563eb}
+.btn-nav{background:#2563eb;color:#fff;padding:10px 22px;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:500;transition:background 0.2s}
+.btn-nav:hover{background:#1d4ed8}
+.hero{max-width:780px;margin:0 auto;padding:80px 5% 60px;text-align:center}
+.badge{display:inline-block;background:#eff6ff;color:#2563eb;font-size:0.78rem;font-weight:500;padding:6px 14px;border-radius:100px;margin-bottom:24px;border:1px solid #bfdbfe}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.15;letter-spacing:-1px;color:#0f172a;margin-bottom:18px}
+.hero h1 span{color:#2563eb}
+.hero p{font-size:1.05rem;color:#64748b;line-height:1.7;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto}
+.cta-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:#2563eb;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-size:1rem;font-weight:500;transition:all 0.2s}
+.btn-primary:hover{background:#1d4ed8;transform:translateY(-1px)}
+.btn-secondary{background:#fff;color:#1a1a2e;padding:14px 32px;border-radius:10px;text-decoration:none;font-size:1rem;font-weight:500;border:1px solid #e2e8f0;transition:all 0.2s}
+.btn-secondary:hover{border-color:#94a3b8;transform:translateY(-1px)}
+.features{max-width:960px;margin:0 auto;padding:20px 5% 80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:#fff;border-radius:14px;padding:28px;border:1px solid #e8eaf0}
+.icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:18px}
+.icon-blue{background:#eff6ff}
+.icon-green{background:#f0fdf4}
+.icon-amber{background:#fffbeb}
+.card h3{font-weight:600;font-size:1rem;margin-bottom:8px;color:#0f172a}
+.card p{font-size:0.9rem;color:#64748b;line-height:1.6}
+.divider{width:48px;height:3px;background:#2563eb;border-radius:2px;margin:0 auto 60px}
+footer{background:#fff;border-top:1px solid #e8eaf0;padding:20px 5%;text-align:center;font-size:0.85rem;color:#94a3b8}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Chuma<span>Pay</span></div>
+  <a href="/pay" class="btn-nav">Pay Now</a>
+</nav>
+
+<section class="hero">
+  <div class="badge">Trusted Payments Platform</div>
+  <h1>Fast & secure <span>payments</span> for everyone</h1>
+  <p>Send money instantly with ChumaPay. Built for simplicity, designed for reliability.</p>
+  <div class="cta-group">
+    <a href="/pay" class="btn-primary">Make a Payment</a>
+    <a href="#features" class="btn-secondary">See How It Works</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="features" id="features">
+  <div class="card">
+    <div class="icon icon-blue">⚡</div>
+    <h3>Instant Transfers</h3>
+    <p>Payments processed in real-time, every time — no delays, no waiting.</p>
+  </div>
+  <div class="card">
+    <div class="icon icon-green">🔒</div>
+    <h3>Bank-level Security</h3>
+    <p>Your transactions are protected with PIN verification and end-to-end encryption.</p>
+  </div>
+  <div class="card">
+    <div class="icon icon-amber">🌍</div>
+    <h3>Easy Integration</h3>
+    <p>A clean API that developers can plug in within minutes, not days.</p>
+  </div>
+</section>
+
+<footer>© 2026 ChumaPay · All rights reserved</footer>
+
+</body>
+</html>
